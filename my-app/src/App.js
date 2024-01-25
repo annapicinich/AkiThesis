@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+
 import './App.css';
 import {  Route, Routes,  Router } from "react-router-dom";
 import Stories from './screens/stories';
@@ -6,8 +6,10 @@ import About from './screens/about'
 import Research from './screens/research';
 import Interactive from './screens/interactive';
 import Navbar from './navbar';
+import { ChakraProvider } from '@chakra-ui/react'
 function App() {
   return (
+    <ChakraProvider>
     <>
     <Navbar/>
       <div>
@@ -19,7 +21,7 @@ function App() {
         </Routes>
         </div>
     </>
-
+    </ChakraProvider>
 
   );
 }
