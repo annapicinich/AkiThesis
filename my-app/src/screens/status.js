@@ -40,11 +40,12 @@ const styles = {
   statusBar: {
     display: 'flex',
     alignItems: 'center',
-    padding: '10px',
+    padding: '5px',
     border: '1px solid #000',
     outline: '1px solid #000',
     marginBottom: '20px',
-    width: '270px', // Set width to 200px
+    width: '260px', // Set width to 200px
+    borderRadius: '10px',
     position: 'fixed', // Fixed position to keep it to the left of the screen
     top:80, // Align to the top of the screen
     left: 50, // Align to the left of the screen

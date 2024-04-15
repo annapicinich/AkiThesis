@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import StatusBar from './status'; // Import the StatusBar component
 
-const School = () => {
+const PublicSchool = () => {
   const [selectedSchool, setSelectedSchool] = useState(null);
 
   const handleSelectSchool = (schoolType) => {
@@ -62,4 +62,4 @@ const styles = {
   }
 };
 
-export default School;
+export default PublicSchool;

@@ -1,39 +1,46 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom";
-import Stories from './screens/stories';
-import About from './screens/about'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import About from './screens/about';
 import Research from './screens/research';
 import Interactive from './screens/interactive';
 import Character from './screens/characterChoice';
 import Institutions from './screens/institutions';
-import Home from './screens/home';
-import School from './screens/school'; // Import School component
-import Hospital from './screens/hospital'; // Import Hospital component
-import Bank from './screens/bank'; // Import Bank component
-import Work from './screens/work'; // Import Work component
+import HomeL from './screens/homeL';
+import HomeM from './screens/homeM';
+import HomeH from './screens/homeH';
+import PrivateSchool from './screens/privateSchool';
+import PublicSchool from './screens/publicSchool';
+import CharterSchool from './screens/charterSchool';
+import Hospital from './screens/hospital';
+import Bank from './screens/bank';
+import Work from './screens/work';
 import Navbar from './navbar';
-import { ChakraProvider } from '@chakra-ui/react';
 
 function App() {
   return (
-    <ChakraProvider>
-      <Navbar />
+   
       <div>
-        <Routes>
-          <Route path="/stories" element={<Stories />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/research" element={<Research />} />
-          <Route path="/interactive" element={<Interactive />} />
-          <Route path="/character" element={<Character />} />
-          <Route path="/institutions" element={<Institutions />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/school" element={<School />} /> {/* Include selectedCharacter parameter */}
-          <Route path="/hospital" element={<Hospital />} /> {/* Include selectedCharacter parameter */}
-          <Route path="/bank" element={<Bank />} /> {/* Include selectedCharacter parameter */}
-          <Route path="/work" element={<Work />} /> {/* Include selectedCharacter parameter */}
-        </Routes>
+        <Navbar />
+        <div>
+          <Routes>
+            <Route path="/about" element={<About />} />
+            <Route path="/research" element={<Research />} />
+            <Route path="/interactive" element={<Interactive />} />
+            <Route path="/character" element={<Character />} />
+            <Route path="/institutions" element={<Institutions />} />
+            <Route path="/homeL" element={<HomeL />} />
+            <Route path="/homeM" element={<HomeM />} />
+            <Route path="/homeH" element={<HomeH />} />
+            <Route path="/privateSchool" element={<PrivateSchool />} />
+            <Route path="/charterSchool" element={<CharterSchool />} />
+            <Route path="/publicSchool" element={<PublicSchool />} />
+            <Route path="/hospital" element={<Hospital />} />
+            <Route path="/bank" element={<Bank />} />
+            <Route path="/work" element={<Work />} />
+          </Routes>
+        </div>
       </div>
-    </ChakraProvider>
+    
   );
 }
 
