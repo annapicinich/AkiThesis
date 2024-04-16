@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {  Route, Routes } from "react-router-dom";
 import About from './screens/about';
 import Research from './screens/research';
 import Interactive from './screens/interactive';
@@ -25,9 +25,10 @@ function App() {
         <Navbar />
         <div>
           <Routes>
+          <Route path="/" element={<Interactive />} />
             <Route path="/about" element={<About />} />
             <Route path="/research" element={<Research />} />
-            <Route path="/interactive" element={<Interactive />} />
+            
             <Route path="/character" element={<Character />} />
             <Route path="/institutions" element={<Institutions />} />
             <Route path="/homeL" element={<HomeL />} />
