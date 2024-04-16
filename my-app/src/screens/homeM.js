@@ -9,8 +9,10 @@ const HomeM = () => {
   // Initialize money and time values from local storage or use default values
   const initialMoney = parseInt(localStorage.getItem('money'), 10);
   const initialTime = parseInt(localStorage.getItem('time'), 10);
+  const initialHouse = parseInt(localStorage.getItem('house'), 10);
 
   const [selectedApartment, setSelectedApartment] = useState(null);
+  const [house, setHouse] = useState(initialHouse);
   const [money, setMoney] = useState(initialMoney);
   const [time, setTime] = useState(initialTime);
 
@@ -21,7 +23,8 @@ const HomeM = () => {
     // Save money and time values to local storage whenever they change
     localStorage.setItem('money', money);
     localStorage.setItem('time', time);
-  }, [money, time]);
+    localStorage.setItem('house', house);
+  }, [money, time, house]);
 
   const [showPopup, setShowPopup] = useState(false); // State for showing the popup
 
@@ -36,11 +39,21 @@ const HomeM = () => {
       setShowPopup(true);
       return;
     }
+    if (time <= 0) {
+        // setShowPopup(true);
+        return;
+      }
+      if (house === 1) {
+        // If so, show the popup and return early
+        // setShowPopup(true);
+        return;
+      }
 
     // Subtract 6 from money and 2 from time
     setMoney(prevMoney => prevMoney - 6);
     setTime(prevTime => prevTime - 2);
-
+    setHouse(1);
+    localStorage.setItem('home', 'homeM');
     // Logic for handling the selection goes here
     setSelectedApartment(true);
 

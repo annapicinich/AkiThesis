@@ -7,7 +7,10 @@ import Public from '../images/publicI.png';
 
 const PublicSchool = () => {
   const initialHealth = parseInt(localStorage.getItem('health'), 10) ;
+  const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
 
+
+  const [school, setSchool] = useState(initialSchool);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [health, setHealth] = useState(initialHealth);
 
@@ -17,7 +20,8 @@ const PublicSchool = () => {
   useEffect(() => {
     // Save health value to local storage whenever it changes
     localStorage.setItem('health', health);
-  }, [health]);
+    localStorage.setItem('school', school);
+  }, [health, school]);
 
   const [showPopup, setShowPopup] = useState(false); // State for showing the popup
 
@@ -32,10 +36,16 @@ const PublicSchool = () => {
       setShowPopup(true);
       return;
     }
+    if (school === 1) {
+      // If so, show the popup and return early
+      // setShowPopup(true);
+      return;
+    }
 
     // Subtract 1 from health
     setHealth(prevHealth => prevHealth - 1);
-
+    setSchool(1);
+    localStorage.setItem('schoolC', 'public');
     // Logic for handling the selection goes here
     setSelectedSchool(true);
 

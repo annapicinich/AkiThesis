@@ -5,11 +5,13 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate from React
 import './interactive.css';
 import Private from '../images/privateI.png';
 
-const PublicSchool = () => {
+const PrivateSchool = () => {
   const initialMoney = parseInt(localStorage.getItem('money'), 10);
+  const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
 
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [money, setMoney] = useState(initialMoney);
+  const [school, setSchool] = useState(initialSchool);
 
   // Initialize useNavigate hook
   const navigate = useNavigate();
@@ -17,7 +19,8 @@ const PublicSchool = () => {
   useEffect(() => {
     // Save money value to local storage whenever it changes
     localStorage.setItem('money', money);
-  }, [money]);
+    localStorage.setItem('school', school);
+  }, [money, school]);
 
   const [showPopup, setShowPopup] = useState(false); // State for showing the popup
 
@@ -32,10 +35,15 @@ const PublicSchool = () => {
       setShowPopup(true);
       return;
     }
-
+    if (school === 1) {
+        // If so, show the popup and return early
+        // setShowPopup(true);
+        return;
+      }
     // Subtract 1 from money
     setMoney(prevmoney => prevmoney - 5);
-
+    setSchool(1);
+    localStorage.setItem('schoolC', 'private');
     // Logic for handling the selection goes here
     setSelectedSchool(true);
 
@@ -52,10 +60,11 @@ const PublicSchool = () => {
       <div style={styles.centeredContent}>
         {/* School Listing Component */}
         <div style={styles.schoolListing}>
-          <h2>School 3: Private School</h2>
+        <h2>School 3: Private School</h2>
           <p>Rated 5/5</p>
           <p>Distance from house: 1 to house, 1 to work</p>
           <p>Price: 5 / month</p>
+          
         </div>
       </div>
       <Task/>
@@ -132,4 +141,4 @@ const styles = {
   },
 };
 
-export default PublicSchool;
+export default PrivateSchool;

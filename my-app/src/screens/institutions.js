@@ -6,8 +6,10 @@ import background from '../images/background.png';
 import envImage from '../images/envir.png'; // Import the work image
 import privateImage from '../images/private.png'; 
 import publicImage from '../images/public.png'; 
+import charter from '../images/charter.png'; 
 import homeL from '../images/homeL.png'; 
 import homeM from '../images/homeM.png'; 
+import homeH from '../images/homeH.png'; 
 import workH from '../images/workH.png'; 
 import workL from '../images/workL.png'; 
 import hospital from '../images/hospital.png'; 
@@ -36,7 +38,7 @@ const Institutions = () => {
         <Link to={`/env`} style={styles.envStyle}></Link>
         <Link to={`/hospital`} style={styles.hospitalStyle}></Link>
         <Link to={`/charterSchool`} style={styles.charterSchoolStyle}></Link>
-        <Link to={`/homeH/`} style={styles.home3Style}></Link>
+        <Link to={`/homeH/`} style={styles.homeHStyle}></Link>
         <Link to={`/homeL`} style={styles.homeLStyle}></Link>
         <Link to={`/publicSchool`} style={styles.publicSchoolStyle}></Link>
         <Link to={`/homeM/`} style={styles.homeMStyle}></Link>
@@ -102,12 +104,12 @@ const styles = {
     justifyContent: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    // backgroundImage: `url(${charter})`,
+    backgroundImage: `url(${charter})`,
     backgroundSize: 'contain',
     width: '300px',
     height: '150px',
   },
-  home3Style: {
+  homeHStyle: {
     textDecoration: 'none',
     color: 'black',
     cursor: 'pointer',
@@ -117,7 +119,7 @@ const styles = {
     justifyContent: 'center',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
-    backgroundImage: `url(${homeM})`,
+    backgroundImage: `url(${homeH})`,
     backgroundSize: 'contain',
     width: '300px',
     height: '150px',

@@ -6,13 +6,15 @@ import './interactive.css';
 import HomeHB from '../images/homeHB.png';
 
 const HomeH = () => {
-  // Initialize money and time values from local storage or use default values
-  const initialMoney = parseInt(localStorage.getItem('money'), 10) ;
-  const initialTime = parseInt(localStorage.getItem('time'), 10);
+ // Initialize money and time values from local storage or use default values
+ const initialMoney = parseInt(localStorage.getItem('money'), 10) ;
+ const initialTime = parseInt(localStorage.getItem('time'), 10);
+ const initialHouse = parseInt(localStorage.getItem('house'), 10);
 
-  const [selectedApartment, setSelectedApartment] = useState(null);
-  const [money, setMoney] = useState(initialMoney);
-  const [time, setTime] = useState(initialTime);
+ const [selectedApartment, setSelectedApartment] = useState(null);
+ const [house, setHouse] = useState(initialHouse);
+ const [money, setMoney] = useState(initialMoney);
+ const [time, setTime] = useState(initialTime);
 
   // Initialize useNavigate hook
   const navigate = useNavigate();
@@ -21,7 +23,8 @@ const HomeH = () => {
     // Save money and time values to local storage whenever they change
     localStorage.setItem('money', money);
     localStorage.setItem('time', time);
-  }, [money, time]);
+    localStorage.setItem('house', house);
+  }, [money, time, house]);
 
   const [showPopup, setShowPopup] = useState(false); // State for showing the popup
 
@@ -36,11 +39,22 @@ const HomeH = () => {
       setShowPopup(true);
       return;
     }
-
+    if (time <= 0) {
+        // setShowPopup(true);
+        return;
+      }
+      if (house === 1) {
+        // If so, show the popup and return early
+        // setShowPopup(true);
+        return;
+      }
     // Subtract 50 from money and 3 from time
     setMoney(prevMoney => prevMoney - 50);
     setTime(prevTime => prevTime - 3);
-
+    setHouse(1);
+    localStorage.setItem('home', 'homeH');
+    // Logic for handling the selection goes here
+    setSelectedApartment(true);
     // Logic for handling the selection goes here
     setSelectedApartment(true);
 
