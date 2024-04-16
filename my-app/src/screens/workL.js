@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import StatusBar from './status'; // Import the StatusBar component
 import Task from './task'; // Import the Task component
 
-const Hospital = () => {
-  
+const WorkL = () => {
+ 
 
   return (
     <div style={styles.container}>
@@ -42,4 +42,4 @@ const styles = {
   }
 };
 
-export default Hospital;
+export default WorkL;

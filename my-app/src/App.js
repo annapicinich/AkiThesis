@@ -13,7 +13,9 @@ import PublicSchool from './screens/publicSchool';
 import CharterSchool from './screens/charterSchool';
 import Hospital from './screens/hospital';
 import Bank from './screens/bank';
-import Work from './screens/work';
+import WorkL from './screens/workL';
+import WorkH from './screens/workH';
+import Env from './screens/env';
 import Navbar from './navbar';
 
 function App() {
@@ -36,7 +38,9 @@ function App() {
             <Route path="/publicSchool" element={<PublicSchool />} />
             <Route path="/hospital" element={<Hospital />} />
             <Route path="/bank" element={<Bank />} />
-            <Route path="/work" element={<Work />} />
+            <Route path="/workL" element={<WorkL />} />
+            <Route path="/workH" element={<WorkH />} />
+            <Route path="/env" element={<Env/>} />
           </Routes>
         </div>
       </div>

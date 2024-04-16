@@ -1,41 +1,21 @@
 import React, { useState } from 'react';
 import StatusBar from './status'; // Import the StatusBar component
+import Task from './task'; // Import the Task component
 
 const CharterSchool = () => {
-  const [selectedSchool, setSelectedSchool] = useState(null);
-
-  const handleSelectSchool = (schoolType) => {
-    setSelectedSchool(schoolType);
-  };
+  
 
   return (
     <div style={styles.container}>
       {/* Include the StatusBar component */}
       <StatusBar />
-      
+      <Task/>
       <header>
         
       </header>
       <main>
         
-        {/* Prompt for selecting a school */}
-        <p>Which school do you want to go to?</p>
         
-        {/* Two clickable boxes for public and private schools */}
-        <div style={styles.centeredContent}>
-          <div 
-            onClick={() => handleSelectSchool('public')} 
-            style={styles.box}
-          >
-            Public
-          </div>
-          <div 
-            onClick={() => handleSelectSchool('private')} 
-            style={styles.box}
-          >
-            Private
-          </div>
-        </div>
       </main>
     </div>
   );

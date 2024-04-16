@@ -1,45 +1,80 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Character.css'; // Import the CSS file for styling
 import blueCharacter from '../images/blueP.png';
 import greenCharacter from '../images/greenP.png';
 import yellowCharacter from '../images/yellowP.png';
 import redCharacter from '../images/redP.png';
 
 const Character = () => {
-  const [selectedCharacter, setSelectedCharacter] = useState(localStorage.getItem('selectedCharacter') || null);
+  const [selectedCharacter, setSelectedCharacter] = useState(null);
 
   const imagePaths = [
-    { name: 'Blue', path: blueCharacter, blurb: 'This character is known for its calm and collected demeanor.' },
-    { name: 'Green', path: greenCharacter, blurb: 'This character is known for its adventurous spirit.' },
-    { name: 'Yellow', path: yellowCharacter, blurb: 'This character is known for its cheerful and optimistic personality.' },
-    { name: 'Red', path: redCharacter, blurb: 'This character is known for its fiery and passionate nature.' }
+    { 
+      name: 'Blue', 
+      path: blueCharacter, 
+      blurb: "Emily Carson grew up in foster care and completed high school. She is a single mother and graphic designer earning a salary of 10 units. Emily has a five-year-old son and maintains savings of 3 units. Without a car, she faces logistical challenges and her financial strain is exacerbated by a pre-existing health condition; with consistent health care and monthly treatments, the condition can be maintained. Without it, though, the condition will worsen.",
+      health: 5,
+      money: 13,
+      time: 10
+    },
+    { 
+      name: 'Green', 
+      path: greenCharacter, 
+      blurb: "Marcus Allen has a Bachelor's degree in Education and is a middle school science teacher earning 15 units. He has a ten-year-old daughter and savings of 5 units. The absence of a car complicates daily commuting and school activities for his daughter. Marcus is in good health, which aids in managing his professional and personal responsibilities.",
+      health: 10,
+      money: 20,
+      time: 10
+    },
+    { 
+      name: 'Yellow', 
+      path: yellowCharacter, 
+      blurb: "Jordan Clarke holds a Master's degree in Business Administration and earns 20 units. He has two-year-old twins and savings of 10 units. Jordan pays 2 units monthly for his car, which supports family transportation. He enjoys very strong health, helping him manage the demands of work and twin parenting.",
+      health: 10,
+      money: 30,
+      time: 10
+    },
+    { 
+      name: 'Red', 
+      path: redCharacter, 
+      blurb: "Alex Reed has a PhD in Engineering, following his parents who also held PhDs in the field. He earns 50 units and has savings of 20 units. Alex owns a car with monthly payments of 4 units, facilitating his active lifestyle. With no children, he focuses on career advancement and personal interests, enjoying substantial financial stability and good health.",
+      health: 10,
+      money: 70,
+      time: 10
+    }
   ];
 
-  const selectCharacter = (name) => {
-    setSelectedCharacter(name);
-    localStorage.setItem('selectedCharacter', name); // Save selected character in local storage
+  const selectCharacter = (character) => {
+    setSelectedCharacter(character.name);
+  
+    localStorage.setItem('selectedCharacter', character.name);
+    localStorage.setItem('health', character.health);
+    localStorage.setItem('money', character.money);
+    localStorage.setItem('time', character.time);
   };
 
   return (
-    <div style={{ justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-      <p style={{ fontSize: '24px', marginBottom: '40px', textAlign: 'center' }}>Choose your character</p>
-      <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px' }}>
+    <div className="character-container">
+      <p className="title">Choose your character</p>
+      <div className="character-grid">
         {imagePaths.map((image, index) => (
-          <div key={index} style={{ margin: '10px', cursor: 'pointer' }} onClick={() => selectCharacter(image.name)}>
-            <img src={image.path} alt={image.name} style={{ width: '150px', height: '150px' }} />
-            <p style={{ textAlign: 'center', fontSize: '20px' }}>{image.name}</p>
-            <p style={{ textAlign: 'center', fontSize: '14px', maxWidth: '200px' }}>{image.blurb}</p>
+          <div key={index} className={`card ${selectedCharacter === image.name ? 'selected' : ''}`} onClick={() => selectCharacter(image)}>
+            <div className="card-inner">
+              <div className="card-front">
+                <img src={image.path} alt={image.name} className="character-image" />
+              </div>
+              <div className="card-back">
+                <p className="character-blurb">{image.blurb}</p>
+              </div>
+            </div>
           </div>
         ))}
       </div>
-      {selectedCharacter && (
-        <div style={{ marginTop: '20px', textAlign: 'center' }}>
-          <p>{selectedCharacter} character selected</p>
-          <Link to={`/institutions`}> 
-            <button style={{ fontSize: '15px', padding: '10px', width: '150px', border: '2px solid black', borderRadius: '5px', marginTop: '20px' }}>Proceed</button>
-          </Link>
-        </div>
-      )}
+      <div className="selected-character-info">
+        <Link to={`/institutions`}>
+          <button className="proceed-button">Play</button>
+        </Link>
+      </div>
     </div>
   );
 }

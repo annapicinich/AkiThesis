@@ -3,30 +3,39 @@ import React from 'react';
 const Navbar = () => {
   const navbarStyles = {
     display: 'flex',
-    justifyContent: 'center',
-    backgroundColor: '#daf0f0',
+    justifyContent: 'space-between', // Align items with space between
+    alignItems: 'center', // Align items vertically centered
     padding: '20px',
-    width: '100%',
-    position: 'fixed', // Set position to fixed
-    top: 0, // Fix it to the top of the viewport
-    zIndex: 999, // Set a high z-index to ensure it stays on top of other elements
+    width: '97%',
+    position: 'fixed',
+    top: 0,
+    zIndex: 999,
   };
 
   const linkStyles = {
     color: 'black',
     textDecoration: 'none',
     margin: '0 1rem',
+    fontSize: '20px', // Larger font size
+    fontWeight: '400', // Heavier font weight
+  };
+
+  const leftLinkStyles = {
+    ...linkStyles,
+    marginRight: 'auto', // Push items to the left
+  };
+
+  const rightLinkStyles = {
+    ...linkStyles,
+    marginLeft: 'auto', // Push items to the right
   };
 
   return (
     <div style={navbarStyles}>
-      <a href="Research" style={linkStyles}>
-        Supplemental Research
-      </a>
-      <a href="Interactive" style={linkStyles}>
+      <a href="Interactive" style={leftLinkStyles}>
         Interactive Module
       </a>
-      <a href="About" style={linkStyles}>
+      <a href="About" style={rightLinkStyles}>
         About
       </a>
     </div>

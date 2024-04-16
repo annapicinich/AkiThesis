@@ -1,17 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom'; // Import Link
+import './interactive.css'; // Import the CSS file for styling
 
 const Interactive = () => {
   return (
-    <div style={{ textAlign: 'center' }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '90vh' }}>
       
      
         <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60vh' }}>
           <div className="content" style={{ textAlign: 'center' }}>
-            <p style={{ fontSize: '24px', maxWidth: '600px', margin: '0 auto', marginBottom: '30px' }}>You will pick a character identity that includes finances, goals, lifestyle, culture, and environmental considerations. Within these constraints, navigate each scenario as best you can.</p>
+            <p style={{ fontSize: '24px', maxWidth: '600px', margin: '0 auto', marginBottom: '30px' }}>Welcome to the simulation! 
+            <br/>
+            <br/>
+            Please click continue when you are ready. Your first task will be waiting for you in the upper right hand corner of the map. </p>
             {/* Replace the button with a Link component */}
             <Link to="/character" style={{ textDecoration: 'none' }}>
-              <button style={{ fontSize: '20px', padding: '10px', width: '150px', border: '2px solid black', borderRadius: '5px' }}>Start</button>
+              <button className="proceed-button">Start</button>
             </Link>
           </div>
         </div>
