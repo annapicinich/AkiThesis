@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/AkiThesis/static/css/main.6f9d2725.css",
-    "main.js": "/AkiThesis/static/js/main.1f5d9a99.js",
+    "main.js": "/AkiThesis/static/js/main.f3442bc2.js",
     "static/js/453.ed3810f9.chunk.js": "/AkiThesis/static/js/453.ed3810f9.chunk.js",
     "static/media/background.png": "/AkiThesis/static/media/background.50027deb62912ac5a2f6.png",
     "static/media/workH.png": "/AkiThesis/static/media/workH.b07b791847eb20a5a5a5.png",
@@ -29,11 +29,11 @@
     "static/media/heart.png": "/AkiThesis/static/media/heart.3c1161f4befbffdb834d.png",
     "index.html": "/AkiThesis/index.html",
     "main.6f9d2725.css.map": "/AkiThesis/static/css/main.6f9d2725.css.map",
-    "main.1f5d9a99.js.map": "/AkiThesis/static/js/main.1f5d9a99.js.map",
+    "main.f3442bc2.js.map": "/AkiThesis/static/js/main.f3442bc2.js.map",
     "453.ed3810f9.chunk.js.map": "/AkiThesis/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.6f9d2725.css",
-    "static/js/main.1f5d9a99.js"
+    "static/js/main.f3442bc2.js"
   ]
 }
