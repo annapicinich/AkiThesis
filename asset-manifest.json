@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/AkiThesis/static/css/main.6f9d2725.css",
+    "main.js": "/AkiThesis/static/js/main.1f5d9a99.js",
+    "static/js/453.ed3810f9.chunk.js": "/AkiThesis/static/js/453.ed3810f9.chunk.js",
+    "static/media/background.png": "/AkiThesis/static/media/background.50027deb62912ac5a2f6.png",
+    "static/media/workH.png": "/AkiThesis/static/media/workH.b07b791847eb20a5a5a5.png",
+    "static/media/envir.png": "/AkiThesis/static/media/envir.f4b95d01c8a90f804d9d.png",
+    "static/media/coin.png": "/AkiThesis/static/media/coin.cb1f3265ddf37ebf1857.png",
+    "static/media/hospital.png": "/AkiThesis/static/media/hospital.a9ab7b1e3241443a4321.png",
+    "static/media/homeHB.png": "/AkiThesis/static/media/homeHB.714b4d12aef387b1f1ba.png",
+    "static/media/private.png": "/AkiThesis/static/media/private.2bb77b8d8af718ab0bbc.png",
+    "static/media/homeM.png": "/AkiThesis/static/media/homeM.79ab23425fe07f9ca1a8.png",
+    "static/media/workL.png": "/AkiThesis/static/media/workL.19e433f4130b02e6e3f3.png",
+    "static/media/homeMB.png": "/AkiThesis/static/media/homeMB.34663459ee786747b1ea.png",
+    "static/media/homeH.png": "/AkiThesis/static/media/homeH.a8db6273bc9d82d93b06.png",
+    "static/media/public.png": "/AkiThesis/static/media/public.86796640c9d87e8bfe3d.png",
+    "static/media/publicI.png": "/AkiThesis/static/media/publicI.278ee7f2548a162ef2f1.png",
+    "static/media/charter.png": "/AkiThesis/static/media/charter.d7ba28cb68c8734fc9ed.png",
+    "static/media/charterB.png": "/AkiThesis/static/media/charterB.a32a733d23373287a775.png",
+    "static/media/homeLB.png": "/AkiThesis/static/media/homeLB.b03d2b3e83ad650e088a.png",
+    "static/media/homeL.png": "/AkiThesis/static/media/homeL.7440593d715ad022ea58.png",
+    "static/media/privateI.png": "/AkiThesis/static/media/privateI.135f09d96ed9ee395f51.png",
+    "static/media/greenP.png": "/AkiThesis/static/media/greenP.9d79b23b1cf70cace3f2.png",
+    "static/media/blueP.png": "/AkiThesis/static/media/blueP.87b076f991ea9906d97f.png",
+    "static/media/yellowP.png": "/AkiThesis/static/media/yellowP.fe8bc42468b7a59adc41.png",
+    "static/media/clock.png": "/AkiThesis/static/media/clock.789be94dec69fd53b68c.png",
+    "static/media/redP.png": "/AkiThesis/static/media/redP.a3cdb3cd6fe95033368a.png",
+    "static/media/heart.png": "/AkiThesis/static/media/heart.3c1161f4befbffdb834d.png",
+    "index.html": "/AkiThesis/index.html",
+    "main.6f9d2725.css.map": "/AkiThesis/static/css/main.6f9d2725.css.map",
+    "main.1f5d9a99.js.map": "/AkiThesis/static/js/main.1f5d9a99.js.map",
+    "453.ed3810f9.chunk.js.map": "/AkiThesis/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f9d2725.css",
+    "static/js/main.1f5d9a99.js"
+  ]
+}
