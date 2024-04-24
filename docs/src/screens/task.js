@@ -69,8 +69,8 @@ const Task = () => {
 const styles = {
   taskBox: {
     position: 'fixed',
-    top: 60,
-    right: 20,
+    top: 180,
+    right: 30,
     background: 'white',
     borderRadius: '10px',
     padding: '10px',

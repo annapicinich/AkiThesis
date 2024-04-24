@@ -12,7 +12,9 @@ import HomeH from "../images/homeH.png";
 import Public from "../images/public.png";
 import Private from "../images/private.png";
 import Charter from "../images/charter.png";
-
+import WorkH from "../images/workH.png"
+import WorkL from "../images/workL.png"
+import { useLocation, useNavigate } from "react-router-dom";
 // Define the characterImages object
 const characterImages = {
   Blue: { image: blueCharacter, },
@@ -23,6 +25,8 @@ const characterImages = {
 
 const StatusBar = ({ money, time, health }) => {
   const [showPopup, setShowPopup] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const closePopup = (e) => {
     e.stopPropagation();
@@ -33,9 +37,14 @@ const StatusBar = ({ money, time, health }) => {
     setShowPopup(!showPopup);
   };
 
+  const handleBackArrowClick = () => {
+    navigate('/institutions');
+    console.log("Back arrow clicked - Navigate to Institution Page");
+  };
 
   let home = null; // Initialize home variable  
   let school = null; // Initialize home variable
+  let work = null; // Initialize home variable
   // Retrieve selectedCharacter from local storage
   const selectedCharacter = localStorage.getItem("selectedCharacter");
 
@@ -45,7 +54,7 @@ const StatusBar = ({ money, time, health }) => {
   const storedHealth = parseInt(localStorage.getItem('health'), 10);
   const storedHouse = parseInt(localStorage.getItem('house'), 10);
   const storedSchool = parseInt(localStorage.getItem('school'), 10);
-  const storedWork = parseInt(localStorage.getItem('money'), 10);
+  const storedWork = parseInt(localStorage.getItem('work'), 10);
 
   // Set initial values based on selected character or stored values
   const initialMoney = storedMoney || characterImages[selectedCharacter]?.money || 0;
@@ -68,11 +77,47 @@ const StatusBar = ({ money, time, health }) => {
     console.log(storedSchool);
     school = storedSchool; // Set home to the value stored in local storage
   }
+  if (storedWork === 1) {
+    console.log("has work");
+    const storedWork= localStorage.getItem('workC'); // Retrieve the string value from localStorage
+    console.log(storedWork);
+    work = storedWork; // Set home to the value stored in local storage
+  }
  
 
   return (
     <div>
+      {!location.pathname.includes("/institutions") && (
+        <div
+          style={{ display: "flex",
+          top: 60,
+          left: 40,
+        boxShadow: '10px',
+          cursor: "pointer",
+          position: 'fixed',
+  
+        }}
+          onClick={handleBackArrowClick}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="26"
+            height="26"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#ffffff"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M19 12H5M12 19l-7-7 7-7" />
+          </svg>
+        </div>
+      )}
+
     <div style={styles.statusBar} onClick={togglePopup}>
+    
+
       <img
         src={characterImagePath}
         alt={selectedCharacter}
@@ -112,7 +157,20 @@ const StatusBar = ({ money, time, health }) => {
           <div style={styles.popup} onClick={(e) => e.stopPropagation()}>
             <div style={styles.closeButton} onClick={closePopup}>X</div>
             {/* Three boxes with words */}
+            Scheduale
+            <div style={styles.sbox}>
+
+            </div>
             <div style={styles.boxContainer}>
+            <div style={styles.box}>
+              {work === 'high' && (
+    <img src={WorkH} alt="WorkH" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+  )}
+  {work === 'low' && (
+    <img src={WorkL} alt="Private" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+  )}
+  
+              </div>
             <div style={styles.box}>
   {home === 'homeL' && (
     <img src={HomeL} alt="HomeL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
@@ -136,13 +194,14 @@ const StatusBar = ({ money, time, health }) => {
     <img src={Charter} alt="Charter" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
   )}
 </div>
-              <div style={styles.box}></div>
+              
             </div>
             {/* Words below the boxes */}
             <div style={styles.wordsContainer}>
+            <p style={styles.words}>Work</p>
               <p style={styles.words}>Home</p>
               <p style={styles.words}>School</p>
-              <p style={styles.words}>Work</p>
+              
             </div>
           </div>
         </div>
@@ -164,7 +223,7 @@ const styles = {
     borderRadius: "10px",
     position: "fixed",
     top: 60,
-    left: 20,
+    right: 30,
     background: "white",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
     fontSize: '18px',
@@ -193,7 +252,7 @@ const styles = {
     padding: '25px',
     textAlign: 'center',
     maxWidth: '500px',
-    height: '190px',
+    height: '640px',
   
   },
   closeButton: {
@@ -209,13 +268,22 @@ const styles = {
     gap: '20px', // Add space between boxes
     
   },
+  sbox: {
+    flex: '1', // Allow boxes to expand equally
+    backgroundColor: '#f0f0f0',
+    borderRadius: '8px',
+    textAlign: 'center',
+    width: '500px',
+    height: '500px',
+    marginBottom: '10px',
+  },
   box: {
     flex: '1', // Allow boxes to expand equally
     backgroundColor: '#f0f0f0',
     borderRadius: '8px',
     textAlign: 'center',
-    width: '220px',
-    height: '150px',
+    width: '100px',
+    height: '100px',
   },
   wordsContainer: {
     display: 'flex',
@@ -226,6 +294,7 @@ const styles = {
     width: '30%',
     fontSize: '18px',
     fontWeight: '400',
+    marginTop: '2px'
   },
 };
 

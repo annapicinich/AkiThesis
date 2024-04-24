@@ -65,7 +65,7 @@ const Character = () => {
     localStorage.setItem('time', character.time);
     localStorage.setItem('house', character.house);
     localStorage.setItem('school', character.school);
-    localStorage.setItem('money', character.money);
+    localStorage.setItem('work', character.work);
   };
 
   return (
