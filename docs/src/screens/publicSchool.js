@@ -78,9 +78,7 @@ const PublicSchool = () => {
           <p>Rated 2/5 on US News and World Reports</p>
           <p>Distance from house: 1 to house, 1 to work</p>
           <p>Effects on stats:</p>
-          <ul>
-            <li>Long-term well-being: -1</li>
-          </ul>
+         
         </div>
       </div>
       <Task/>
