@@ -8,11 +8,12 @@ import Public from '../images/publicI.png';
 const PublicSchool = () => {
   const initialHealth = parseInt(localStorage.getItem('health'), 10) ;
   const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
-
+  const initialHome = parseInt(localStorage.getItem('house'), 10);
 
   const [school, setSchool] = useState(initialSchool);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [health, setHealth] = useState(initialHealth);
+  const [home, setHome] = useState(initialHome);
 
   // Initialize useNavigate hook
   const navigate = useNavigate();
@@ -21,24 +22,35 @@ const PublicSchool = () => {
     // Save health value to local storage whenever it changes
     localStorage.setItem('health', health);
     localStorage.setItem('school', school);
+   
   }, [health, school]);
 
-  const [showPopup, setShowPopup] = useState(false); // State for showing the popup
+  const [showHealthPopup, setShowHealthPopup] = useState(false); // State for showing health popup
+  const [showSchoolPopup, setShowSchoolPopup] = useState(false); // State for showing school popup
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
+  const handleCloseHealthPopup = () => {
+    setShowHealthPopup(false);
+  };
+
+  const handleCloseSchoolPopup = () => {
+    setShowSchoolPopup(false);
   };
 
   const handleSelectSchool = () => {
     // Check if the user has enough health to attend the school
     if (health <= 0) {
-      // If not, show the popup and return early
-      setShowPopup(true);
+      // If not, show the health popup and return early
+      setShowHealthPopup(true);
+      return;
+    }
+    if (home === 0) {
+      // If the character doesn't have a home, show a popup
+      setShowSchoolPopup(true);
       return;
     }
     if (school === 1) {
-      // If so, show the popup and return early
-      // setShowPopup(true);
+      // If the character already attends a school, show a popup and return early
+      setShowSchoolPopup(true);
       return;
     }
 
@@ -67,7 +79,7 @@ const PublicSchool = () => {
           <p>Distance from house: 1 to house, 1 to work</p>
           <p>Effects on stats:</p>
           <ul>
-            <li>Long-term well being: -1</li>
+            <li>Long-term well-being: -1</li>
           </ul>
         </div>
       </div>
@@ -79,12 +91,23 @@ const PublicSchool = () => {
         {/* Choose button */}
         <button className="proceed-button" onClick={handleSelectSchool}>Choose</button>
       </main>
-      {/* Popup */}
-      {showPopup && (
+      {/* Health Popup */}
+      {showHealthPopup && (
         <div style={styles.popup}>
           <div style={styles.popupContent}>
-            <button style={styles.closeButton} onClick={handleClosePopup}>x</button>
+            <button style={styles.closeButton} onClick={handleCloseHealthPopup}>x</button>
             <p>You do not have enough health to attend this school. Please look at other options.</p>
+          </div>
+        </div>
+      )}
+      {/* School Popup */}
+      {showSchoolPopup && (
+        <div style={styles.popup}>
+          <div style={styles.popupContent}>
+            <button style={styles.closeButton} onClick={handleCloseSchoolPopup}>x</button>
+            {health <= 0 && <p>You do not have enough health to attend this school. Please look at other options.</p>}
+            {home === 0 && <p>Please finish Task 1 before choosing a school.</p>}
+            {school === 1 && <p>You are already attending a school.</p>}
           </div>
         </div>
       )}

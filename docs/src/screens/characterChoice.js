@@ -13,46 +13,54 @@ const Character = () => {
     { 
       name: 'Blue', 
       path: blueCharacter, 
-      blurb: "Emily Carson grew up in foster care and completed high school. She is a single mother and graphic designer earning a salary of 10 units. Emily has a five-year-old son and maintains savings of 3 units. Without a car, she faces logistical challenges and her financial strain is exacerbated by a pre-existing health condition; with consistent health care and monthly treatments, the condition can be maintained. Without it, though, the condition will worsen.",
+      blurb: "Emily entered foster care when she was 8 and completed high school. She is a 28 year-old single mother and graphic designer earning a salary of 10 units. Emily has a five-year-old son and currently has savings of 3 units. She has no car. Further, she has a pre-existing health condition; with consistent health care and monthly treatments, the condition can be maintained. Without consistent treatment, though, the condition will worsen. ",
       health: 5,
-      money: 13,
+      money: 9,
       time: 10,
       house: 0,
       school: 0,
       work: 0,
+      car: 0,
+      baby: 1,
     },
     { 
       name: 'Green', 
       path: greenCharacter, 
-      blurb: "Marcus Allen has a Bachelor's degree in Education and is a middle school science teacher earning 15 units. He has a ten-year-old daughter and savings of 5 units. The absence of a car complicates daily commuting and school activities for his daughter. Marcus is in good health, which aids in managing his professional and personal responsibilities.",
+      blurb: "Marcus has a Bachelor's degree in Education and is a middle school science teacher earning 15 units monthly. He has a ten-year-old daughter and savings of 5 units. Marcus does not have a car. Marcus is in good health.",
       health: 10,
       money: 20,
       time: 10,
       house: 0,
       school: 0,
-      work: 0,
+      work: 1,
+      car: 0,
+      baby: 1,
     },
     { 
       name: 'Yellow', 
       path: yellowCharacter, 
-      blurb: "Jordan Clarke holds a Master's degree in Business Administration and earns 20 units. He has two-year-old twins and savings of 10 units. Jordan pays 2 units monthly for his car, which supports family transportation. He enjoys very strong health, helping him manage the demands of work and twin parenting.",
+      blurb: "Jordan has a Master's degree in Business Administration and earns 20 units per month. He has two-year-old twins and savings of 10 units. Jordan pays 2 units monthly for his car. He has strong health.",
       health: 10,
       money: 30,
       time: 10,
       house: 0,
       school: 0,
-      work: 0,
+      work: 1,
+      car: 1,
+      baby: 2,
     },
     { 
       name: 'Red', 
       path: redCharacter, 
-      blurb: "Alex Reed has a PhD in Engineering, following his parents who also held PhDs in the field. He earns 50 units and has savings of 20 units. Alex owns a car with monthly payments of 4 units, facilitating his active lifestyle. With no children, he focuses on career advancement and personal interests, enjoying substantial financial stability and good health.",
+      blurb: "Maya has a PhD in Engineering, following her parents who also held Ph.Ds in the field. He earns 50 units and has savings of 20 units. Alex owns a car with monthly payments of 4 units. Alex has no children and is in strong health. ",
       health: 10,
       money: 70,
       time: 10,
       house: 0,
       school: 0,
-      work: 0,
+      work: 1,
+      car: 1,
+      baby: 3,
     }
   ];
 
@@ -66,6 +74,8 @@ const Character = () => {
     localStorage.setItem('house', character.house);
     localStorage.setItem('school', character.school);
     localStorage.setItem('work', character.work);
+    localStorage.setItem('car', character.car);
+    localStorage.setItem('baby', character.baby);
   };
 
   return (

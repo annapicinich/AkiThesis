@@ -34,7 +34,7 @@ const HomeM = () => {
 
   const handleSelectApartment = () => {
     // Check if the user has enough money to buy the house
-    if (money < 6) {
+    if (money < 10) {
       // If not, show the popup and return early
       setShowPopup(true);
       return;
@@ -50,7 +50,7 @@ const HomeM = () => {
       }
 
     // Subtract 6 from money and 2 from time
-    setMoney(prevMoney => prevMoney - 6);
+    setMoney(prevMoney => prevMoney - 10);
     setTime(prevTime => prevTime - 2);
     setHouse(1);
     localStorage.setItem('home', 'homeM');
@@ -71,7 +71,7 @@ const HomeM = () => {
         {/* Apartment Listing Component */}
         <div style={styles.apartmentListing}>
           <h2>Convenient 2-Bedroom Apartment Adjacent to Highway</h2>
-          <p><strong>Monthly Rent:</strong> 6 coins</p>
+          <p><strong>Monthly Rent:</strong> 10 coins</p>
           <p><strong>Location:</strong> Near Main Highway</p>
           <p><strong>Type:</strong> Apartment</p>
           <p><strong>Description:</strong> Ideal for small families or roommates, this 2-bedroom, 1-bathroom apartment offers excellent accessibility, located adjacent to the main highway. This provides quick access to the city center with a commute of just two time coins, balancing affordability and convenience.</p>

@@ -7,11 +7,13 @@ import Private from '../images/privateI.png';
 
 const PrivateSchool = () => {
   const initialMoney = parseInt(localStorage.getItem('money'), 10);
-  const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
+  const initialSchool = parseInt(localStorage.getItem('school'), 10);
+  const initialHome = parseInt(localStorage.getItem('house'), 10);
 
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [money, setMoney] = useState(initialMoney);
   const [school, setSchool] = useState(initialSchool);
+  const [home, setHome] = useState(initialHome);
 
   // Initialize useNavigate hook
   const navigate = useNavigate();
@@ -22,26 +24,35 @@ const PrivateSchool = () => {
     localStorage.setItem('school', school);
   }, [money, school]);
 
-  const [showPopup, setShowPopup] = useState(false); // State for showing the popup
+  // State variables for different popups
+  const [showMoneyPopup, setShowMoneyPopup] = useState(false);
+  const [showHomePopup, setShowHomePopup] = useState(false);
+  const [showSchoolPopup, setShowSchoolPopup] = useState(false);
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
+  // Handlers for closing different popups
+  const handleCloseMoneyPopup = () => setShowMoneyPopup(false);
+  const handleCloseHomePopup = () => setShowHomePopup(false);
+  const handleCloseSchoolPopup = () => setShowSchoolPopup(false);
 
   const handleSelectSchool = () => {
     // Check if the user has enough money to attend the school
     if (money <= 5) {
-      // If not, show the popup and return early
-      setShowPopup(true);
+      setShowMoneyPopup(true);
       return;
     }
+    // Check if the character has a home
+    if (home === 0) {
+      setShowHomePopup(true);
+      return;
+    }
+    // Check if the character already attends a school
     if (school === 1) {
-        // If so, show the popup and return early
-        // setShowPopup(true);
-        return;
-      }
-    // Subtract 1 from money
-    setMoney(prevmoney => prevmoney - 5);
+      setShowSchoolPopup(true);
+      return;
+    }
+
+    // Subtract 5 from money
+    setMoney(prevMoney => prevMoney - 5);
     setSchool(1);
     localStorage.setItem('schoolC', 'private');
     // Logic for handling the selection goes here
@@ -60,27 +71,40 @@ const PrivateSchool = () => {
       <div style={styles.centeredContent}>
         {/* School Listing Component */}
         <div style={styles.schoolListing}>
-        <h2>School 3: Private School</h2>
+          <h2>School 3: Private School</h2>
           <p>Rated 5/5</p>
           <p>Distance from house: 1 to house, 1 to work</p>
           <p>Price: 5 / month</p>
-          
         </div>
       </div>
-      <Task/>
-      <header>
-        
-      </header>
+      <Task />
+      <header></header>
       <main>
         {/* Choose button */}
         <button className="proceed-button" onClick={handleSelectSchool}>Choose</button>
       </main>
-      {/* Popup */}
-      {showPopup && (
+      {/* Popups */}
+      {showMoneyPopup && (
         <div style={styles.popup}>
           <div style={styles.popupContent}>
-            <button style={styles.closeButton} onClick={handleClosePopup}>x</button>
+            <button style={styles.closeButton} onClick={handleCloseMoneyPopup}>x</button>
             <p>You do not have enough money to attend this school. Please look at other options.</p>
+          </div>
+        </div>
+      )}
+      {showHomePopup && (
+        <div style={styles.popup}>
+          <div style={styles.popupContent}>
+            <button style={styles.closeButton} onClick={handleCloseHomePopup}>x</button>
+            <p>Please finish Task 1 before choosing a school.</p>
+          </div>
+        </div>
+      )}
+      {showSchoolPopup && (
+        <div style={styles.popup}>
+          <div style={styles.popupContent}>
+            <button style={styles.closeButton} onClick={handleCloseSchoolPopup}>x</button>
+            <p>You are already attending a school.</p>
           </div>
         </div>
       )}

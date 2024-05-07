@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     <div style={navbarStyles}>
-      <a href="Interactive" style={leftLinkStyles}>
+      <a href="/" style={leftLinkStyles}>
         Interactive Module
       </a>
       <a href="About" style={rightLinkStyles}>

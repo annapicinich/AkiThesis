@@ -34,7 +34,7 @@ const HomeH = () => {
 
   const handleSelectApartment = () => {
     // Check if the user has enough money to buy the house
-    if (money < 50) {
+    if (money < 15) {
       // If not, show the popup and return early
       setShowPopup(true);
       return;
@@ -49,7 +49,7 @@ const HomeH = () => {
         return;
       }
     // Subtract 50 from money and 3 from time
-    setMoney(prevMoney => prevMoney - 50);
+    setMoney(prevMoney => prevMoney - 15);
     setTime(prevTime => prevTime - 3);
     setHouse(1);
     localStorage.setItem('home', 'homeH');
@@ -72,17 +72,14 @@ const HomeH = () => {
         {/* Apartment Listing Component */}
         <div style={styles.apartmentListing}>
           <h2>Premier 2-Bedroom Home Next to City Park</h2>
-          <p><strong>Price:</strong> 50 coins (5 coins down payment)</p>
-          <p><strong>Monthly Mortgage:</strong> 5 coins</p>
+          <p><strong>Price:</strong> 15 coins a month</p>
           <p><strong>Location:</strong> Next to City Park, Suburban Bliss</p>
           <p><strong>Type:</strong> Single-Family Home</p>
           <p><strong>Description:</strong> This 2-bedroom, 2-bathroom single-family home is ideally located next to a city park in a desirable suburban neighborhood. The well-designed layout and serene setting make it a perfect choice for those seeking comfort and convenience, with a commute time of three time coins to the city center.</p>
           <p><strong>Features:</strong></p>
           <ul>
-            <li>Down payment of 5 coins with an affordable monthly mortgage</li>
             <li>2 bedrooms, 2 bathrooms</li>
             <li>Ideal location next to a city park</li>
-            <li>Commute time: 3 time coins</li>
           </ul>
           <p><strong>Contact:</strong> Suburban Homes</p>
           <p><strong>Phone:</strong> (555) 004-0056</p>

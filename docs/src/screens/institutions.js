@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StatusBar from './status';
 import Task from './task'; // Import the Task component
+import Store from './store'; // Import the Task component
 import background from '../images/background.png';
 import envImage from '../images/envir.png'; // Import the work image
 import privateImage from '../images/private.png'; 
@@ -13,8 +14,12 @@ import homeH from '../images/homeH.png';
 import workH from '../images/workH.png'; 
 import workL from '../images/workL.png'; 
 import hospital from '../images/hospital.png'; 
+import Situation from './situations'
 
 const Institutions = () => {
+
+  const storedSchool = parseInt(localStorage.getItem('school'), 10);
+  console.log(storedSchool)
   return (
     <div style={{ 
       minHeight: '100vh', 
@@ -27,7 +32,10 @@ const Institutions = () => {
       backgroundPosition: 'center', // Center the background image
     }}>
       {/* Task component */}
-      <Task />
+
+      {storedSchool == 0 && <Task />}
+    
+      {storedSchool !== 0 && <Situation />}
 
       {/* Status Bar */}
       <StatusBar />

@@ -6,45 +6,48 @@ import './interactive.css';
 import CharterB from '../images/charterB.png';
 
 const Charter = () => {
-  const initialHealth = parseInt(localStorage.getItem('health'), 10) ;
+  const initialHealth = parseInt(localStorage.getItem('health'), 10);
   const initialMoney = parseInt(localStorage.getItem('money'), 10);
-  const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
+  const initialSchool = parseInt(localStorage.getItem('school'), 10);
+  const initialHome = parseInt(localStorage.getItem('house'), 10);
 
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [money, setMoney] = useState(initialMoney);
   const [school, setSchool] = useState(initialSchool);
   const [health, setHealth] = useState(initialHealth);
+  const [home, setHome] = useState(initialHome);
 
   // Initialize useNavigate hook
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Save money value to local storage whenever it changes
+    // Save money, school, health, and work values to local storage whenever they change
     localStorage.setItem('money', money);
     localStorage.setItem('school', school);
     localStorage.setItem('health', health);
-  }, [money, health]);
+  }, [money, health, school]);
 
+  // State variables for different popups
   const [showPopup, setShowPopup] = useState(false); // State for showing the popup
 
+  // Handlers for closing different popups
   const handleClosePopup = () => {
     setShowPopup(false);
   };
 
   const handleSelectSchool = () => {
-    // Check if the user has enough money to attend the school
-    if (money <= 6) {
-      // If not, show the popup and return early
+    // Check if the character already attends a school
+    if (school === 1) {
       setShowPopup(true);
       return;
     }
-    if (school === 1) {
-        // If so, show the popup and return early
-        // setShowPopup(true);
-        return;
-      }
-    // Subtract 1 from money
-    setMoney(prevmoney => prevmoney - 6);
+    // Check if the character doesn't have work
+    if (home === 0) {
+      setShowPopup(true);
+      return;
+    }
+
+    // Update health and school
     setHealth(prevHealth => prevHealth + 1);
     setSchool(1);
     localStorage.setItem('schoolC', 'charter');
@@ -64,16 +67,13 @@ const Charter = () => {
       <div style={styles.centeredContent}>
         {/* School Listing Component */}
         <div style={styles.schoolListing}>
-        <h2>School 2: Charter School </h2>
+          <h2>School 2: Charter School </h2>
           <p>Rated 5/5</p>
           <p>Distance from house: 4 to house, 4 to work </p>
-          <p>Price: 6 / month</p>
         </div>
       </div>
-      <Task/>
-      <header>
-        
-      </header>
+      <Task />
+      <header></header>
       <main>
         {/* Choose button */}
         <button className="proceed-button" onClick={handleSelectSchool}>Choose</button>
@@ -83,7 +83,8 @@ const Charter = () => {
         <div style={styles.popup}>
           <div style={styles.popupContent}>
             <button style={styles.closeButton} onClick={handleClosePopup}>x</button>
-            <p>You do not have enough money to attend this school. Please look at other options.</p>
+            {school === 1 && <p>You are already attending a school.</p>}
+            {home === 0 && <p>Please finish Task 1 before choosing a school.</p>}
           </div>
         </div>
       )}

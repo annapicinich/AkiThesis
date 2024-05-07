@@ -14,13 +14,18 @@ import Private from "../images/private.png";
 import Charter from "../images/charter.png";
 import WorkH from "../images/workH.png"
 import WorkL from "../images/workL.png"
+import Car from "../images/car.png"
+import X from "../images/X.png"
+import Baby from "../images/baby.png"
+import Baby2 from "../images/baby2.png"
+import Baby3 from "../images/3baby.png"
 import { useLocation, useNavigate } from "react-router-dom";
-// Define the characterImages object
+
 const characterImages = {
-  Blue: { image: blueCharacter, },
-  Green: { image: greenCharacter, },
-  Yellow: { image: yellowCharacter, },
-  Red: { image: redCharacter, },
+  Blue: { image: blueCharacter },
+  Green: { image: greenCharacter },
+  Yellow: { image: yellowCharacter },
+  Red: { image: redCharacter },
 };
 
 const StatusBar = ({ money, time, health }) => {
@@ -42,52 +47,49 @@ const StatusBar = ({ money, time, health }) => {
     console.log("Back arrow clicked - Navigate to Institution Page");
   };
 
-  let home = null; // Initialize home variable  
-  let school = null; // Initialize home variable
-  let work = null; // Initialize home variable
-  // Retrieve selectedCharacter from local storage
+  let home = null;
+  let school = null;
+  let work = null;
   const selectedCharacter = localStorage.getItem("selectedCharacter");
 
-  // Initialize character data from local storage or use default values
   const storedMoney = parseInt(localStorage.getItem('money'), 10);
   const storedTime = parseInt(localStorage.getItem('time'), 10);
   const storedHealth = parseInt(localStorage.getItem('health'), 10);
   const storedHouse = parseInt(localStorage.getItem('house'), 10);
   const storedSchool = parseInt(localStorage.getItem('school'), 10);
   const storedWork = parseInt(localStorage.getItem('work'), 10);
+  const storedCar = parseInt(localStorage.getItem('car'), 10);
+  const storedBaby = parseInt(localStorage.getItem('baby'), 10);
 
-  // Set initial values based on selected character or stored values
   const initialMoney = storedMoney || characterImages[selectedCharacter]?.money || 0;
   const initialTime = storedTime || characterImages[selectedCharacter]?.time || 0;
   const initialHealth = storedHealth || characterImages[selectedCharacter]?.health || 0;
   const initialHouse = storedHouse || characterImages[selectedCharacter]?.house || 0;
   const initialSchool = storedSchool || characterImages[selectedCharacter]?.school || 0;
   const initialWork = storedWork || characterImages[selectedCharacter]?.work || 0;
+  const initialCar = storedCar || characterImages[selectedCharacter]?.car || 0;
+  const initialBaby = storedBaby || characterImages[selectedCharacter]?.baby || 0;
   const characterImagePath = characterImages[selectedCharacter]?.image;
 
   if (storedHouse === 1) {
     console.log("has house");
-    const storedHome = localStorage.getItem('home'); // Retrieve the string value from localStorage
+    const storedHome = localStorage.getItem('home');
     console.log(storedHome);
-    home = storedHome; // Set home to the value stored in local storage
+    home = storedHome;
   }
   if (storedSchool === 1) {
     console.log("has school");
-    const storedSchool= localStorage.getItem('schoolC'); // Retrieve the string value from localStorage
+    const storedSchool= localStorage.getItem('schoolC');
     console.log(storedSchool);
-    school = storedSchool; // Set home to the value stored in local storage
+    school = storedSchool;
   }
-  if (storedWork === 1) {
-    console.log("has work");
-    const storedWork= localStorage.getItem('workC'); // Retrieve the string value from localStorage
-    console.log(storedWork);
-    work = storedWork; // Set home to the value stored in local storage
-  }
+
+
  
 
   return (
     <div>
-      {!location.pathname.includes("/institutions") && (
+      {!location.pathname.includes("/institutions") && !location.pathname.includes("/HospitalScenario") &&(
         <div
           style={{ display: "flex",
           top: 60,
@@ -151,57 +153,67 @@ const StatusBar = ({ money, time, health }) => {
       </div>
     
 
-      {/* Popup */}
       {showPopup && (
         <div style={styles.popupBackground} onClick={togglePopup}>
           <div style={styles.popup} onClick={(e) => e.stopPropagation()}>
             <div style={styles.closeButton} onClick={closePopup}>X</div>
-            {/* Three boxes with words */}
-            Scheduale
-            <div style={styles.sbox}>
-
-            </div>
             <div style={styles.boxContainer}>
             <div style={styles.box}>
-              {work === 'high' && (
-    <img src={WorkH} alt="WorkH" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  {work === 'low' && (
-    <img src={WorkL} alt="Private" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  
+                {storedCar === 1 && (
+                  <img src={Car} alt="WorkH" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {storedCar === 0 && (
+                  <img src={X} alt="WorkL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
               </div>
-            <div style={styles.box}>
-  {home === 'homeL' && (
-    <img src={HomeL} alt="HomeL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  {home === 'homeM' && (
-    <img src={HomeM} alt="HomeM" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  {home === 'homeH' && (
-    <img src={HomeH} alt="HomeH" style={{ width: '100%', height: '85%', borderRadius: '8px' }} />
-  )}
-</div>
-
-<div style={styles.box}>
-  {school === 'public' && (
-    <img src={Public} alt="Public" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  {school === 'private' && (
-    <img src={Private} alt="Private" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-  {school === 'charter' && (
-    <img src={Charter} alt="Charter" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
-  )}
-</div>
-              
+              <div style={styles.box}>
+                {storedBaby === 2 && (
+                  <img src={Baby2} alt="WorkH" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {storedBaby === 1 && (
+                  <img src={Baby} alt="WorkL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {storedBaby === 3 && (
+                  <img src={Baby3} alt="WorkL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+              </div>
+              <div style={styles.box}>
+                {storedWork === 1 && (
+                  <img src={WorkH} alt="WorkH" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {storedWork === 0 && (
+                  <img src={WorkL} alt="WorkL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+              </div>
+              <div style={styles.box}>
+                {home === 'homeL' && (
+                  <img src={HomeL} alt="HomeL" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {home === 'homeM' && (
+                  <img src={HomeM} alt="HomeM" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {home === 'homeH' && (
+                  <img src={HomeH} alt="HomeH" style={{ width: '100%', height: '85%', borderRadius: '8px' }} />
+                )}
+              </div>
+              <div style={styles.box}>
+                {school === 'public' && (
+                  <img src={Public} alt="Public" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {school === 'private' && (
+                  <img src={Private} alt="Private" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+                {school === 'charter' && (
+                  <img src={Charter} alt="Charter" style={{ width: '100%', height: '100%', borderRadius: '8px' }} />
+                )}
+              </div>
             </div>
-            {/* Words below the boxes */}
             <div style={styles.wordsContainer}>
-            <p style={styles.words}>Work</p>
+            <p style={styles.words}>Car</p>
+            <p style={styles.words}>Baby</p>
+              <p style={styles.words}>Work</p>
               <p style={styles.words}>Home</p>
               <p style={styles.words}>School</p>
-              
             </div>
           </div>
         </div>
@@ -210,8 +222,6 @@ const StatusBar = ({ money, time, health }) => {
     </div>
   );
 };
-
-
 
 const styles = {
   statusBar: {
@@ -251,8 +261,8 @@ const styles = {
     background: 'white',
     padding: '25px',
     textAlign: 'center',
-    maxWidth: '500px',
-    height: '640px',
+    maxWidth: '800px',
+    height: '160px',
   
   },
   closeButton: {
@@ -268,22 +278,13 @@ const styles = {
     gap: '20px', // Add space between boxes
     
   },
-  sbox: {
-    flex: '1', // Allow boxes to expand equally
-    backgroundColor: '#f0f0f0',
-    borderRadius: '8px',
-    textAlign: 'center',
-    width: '500px',
-    height: '500px',
-    marginBottom: '10px',
-  },
   box: {
     flex: '1', // Allow boxes to expand equally
     backgroundColor: '#f0f0f0',
     borderRadius: '8px',
     textAlign: 'center',
-    width: '100px',
-    height: '100px',
+    width: '140px',
+    height: '140px',
   },
   wordsContainer: {
     display: 'flex',

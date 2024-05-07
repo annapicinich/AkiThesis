@@ -12,6 +12,7 @@ import PrivateSchool from './screens/privateSchool';
 import PublicSchool from './screens/publicSchool';
 import CharterSchool from './screens/charterSchool';
 import Hospital from './screens/hospital';
+import HospitalScenario from './screens/hospitalScenario';
 import Bank from './screens/bank';
 import WorkL from './screens/workL';
 import WorkH from './screens/workH';
@@ -42,6 +43,7 @@ function App() {
             <Route path="/workL" element={<WorkL />} />
             <Route path="/workH" element={<WorkH />} />
             <Route path="/env" element={<Env/>} />
+            <Route path="/hospitalScenario" element={<HospitalScenario/>} />
           </Routes>
         </div>
       </div>
