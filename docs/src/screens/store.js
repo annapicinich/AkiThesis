@@ -1,19 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Store = () => {
   const [showPopup, setShowPopup] = useState(false);
-  const [money, setMoney] = useState(parseInt(localStorage.getItem('money'), 10) || 0);
-  const [health, setHealth] = useState(100);
-  const [currentTask, setCurrentTask] = useState(1);
-  const [showStore, setShowStore] = useState(false);
-
-  const items = [
-    { name: "Car", cost: 5, monthlyCost: 2, effect: 0, description: "Car (5 coin + 2 monthly base price)" },
-    { name: "Healthy Groceries", cost: 2, effect: 2, description: "Healthy groceries (2 coin)" },
-    { name: "Fun Activity", cost: 0, effect: 3, description: "Fun activity (1 hour)" },
-    { name: "Nap", cost: 0, effect: 1, description: "Nap (30 mins time)" },
-    { name: "Workout Class", cost: 1, effect: 1, description: "Workout class (1 coin + 1 heart)" }
-  ];
 
   const closePopup = () => {
     setShowPopup(false);
@@ -23,42 +11,44 @@ const Store = () => {
     setShowPopup(!showPopup);
   };
 
-  const toggleStore = () => {
-    setShowStore(!showStore);
+  // Placeholder function for purchasing items
+  const handlePurchase = (itemName) => {
+    console.log(`You purchased ${itemName}`);
   };
 
-  const buyItem = (item) => {
-    if (money >= item.cost) {
-      setMoney(money - item.cost);
-      setHealth(health + item.effect);
-    } else {
-      alert("You don't have enough money to buy this item!");
-    }
-  };
+  // Store items data
+  const storeItems = [
+    { name: 'Car', cost: 5, benefit: '+2 heart' },
+    { name: 'Healthy Groceries', cost: 2, benefit: '+2 heart' },
+    { name: 'Fun Activity', cost: 1, benefit: '+2 heart' },
+    { name: 'Nap', cost: 0.5, benefit: '+1 heart' },
+    { name: 'Workout Class', cost: 1, benefit: '+1 heart' },
+    { name: 'Air Conditioning', cost: 1, benefit: '+1 heart' },
+  ];
 
   return (
     <div>
-      <div
-        style={styles.taskBox}
-        onClick={togglePopup}
-      >
-        Task {currentTask}
+      {/* Store box */}
+      <div style={styles.storeBox} onClick={togglePopup}>
+        Life Store
       </div>
 
+      {/* Popup */}
       {showPopup && (
-        <div style={styles.popupBackground} onClick={closePopup}>
+        <div style={styles.popupBackground}>
           <div style={styles.popup} onClick={(e) => e.stopPropagation()}>
             <div style={styles.closeButton} onClick={closePopup}>X</div>
-            <h2>Store</h2>
-            <ul>
-              {items.map((item, index) => (
-                <li key={index}>
-                  <div>{item.description}</div>
-                  <button onClick={() => buyItem(item)}>Buy</button>
-                </li>
+            {/* Render store items */}
+            <div style={styles.storeGrid}>
+              {storeItems.map((item, index) => (
+                <div key={item.name} style={styles.storeItem}>
+                  <strong>{item.name}</strong>
+                  <p>Cost: {item.cost} coin</p>
+                  <p>Benefit: {item.benefit}</p>
+                  <button style={styles.purchaseButton} onClick={() => handlePurchase(item.name)}>Purchase</button>
+                </div>
               ))}
-            </ul>
-            <button onClick={closePopup}>Close Store</button>
+            </div>
           </div>
         </div>
       )}
@@ -67,10 +57,10 @@ const Store = () => {
 };
 
 const styles = {
-  taskBox: {
+  storeBox: {
     position: 'fixed',
-    top: 180,
-    right: 30,
+    top: 60,
+    left: 30,
     background: 'white',
     borderRadius: '10px',
     padding: '10px',
@@ -97,18 +87,40 @@ const styles = {
     background: 'white',
     padding: '30px',
     textAlign: 'center',
-    maxWidth: '350px',
+    maxWidth: '600px',
   },
-  popupText: {
-    margin: '0',
-    fontSize: '18px',
+  storeGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gridTemplateRows: 'repeat(2, auto)',
+    gap: '20px',
   },
+  storeItem: {
+    marginBottom: '20px',
+    border: '1px solid #f0f0f0',
+    background: '#f0f0f0',
+    borderRadius: '5px',
+    padding: '10px',
+  },
+  purchaseButton: {
+    backgroundColor: 'green',
+    color: 'white',
+    border: 'none',
+    borderRadius: '5px',
+    padding: '10px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s',
+  },
+  
   closeButton: {
     position: 'absolute',
     top: '8px',
     right: '12px',
     cursor: 'pointer',
   },
+  
 };
 
 export default Store;

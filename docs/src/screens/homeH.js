@@ -10,7 +10,7 @@ const HomeH = () => {
  const initialMoney = parseInt(localStorage.getItem('money'), 10) ;
  const initialTime = parseInt(localStorage.getItem('time'), 10);
  const initialHouse = parseInt(localStorage.getItem('house'), 10);
-
+ const storedSchool = parseInt(localStorage.getItem('school'), 10);
  const [selectedApartment, setSelectedApartment] = useState(null);
  const [house, setHouse] = useState(initialHouse);
  const [money, setMoney] = useState(initialMoney);
@@ -86,7 +86,7 @@ const HomeH = () => {
           <p><strong>Email:</strong> sales@suburbanhomes.com</p>
         </div>
       </div>
-      <Task/>
+      {storedSchool == 0 && <Task />}
       <header>
         
       </header>

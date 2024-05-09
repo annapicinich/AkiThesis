@@ -9,7 +9,7 @@ const PublicSchool = () => {
   const initialHealth = parseInt(localStorage.getItem('health'), 10) ;
   const initialSchool = parseInt(localStorage.getItem('school'), 10) ;
   const initialHome = parseInt(localStorage.getItem('house'), 10);
-
+  const storedSchool = parseInt(localStorage.getItem('school'), 10);
   const [school, setSchool] = useState(initialSchool);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [health, setHealth] = useState(initialHealth);
@@ -81,7 +81,7 @@ const PublicSchool = () => {
          
         </div>
       </div>
-      <Task/>
+      {storedSchool == 0 && <Task />}
       <header>
         
       </header>

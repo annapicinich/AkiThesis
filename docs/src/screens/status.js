@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import heartImage from "../images/heart.png";
 import clockImage from "../images/clock.png";
 import coinImage from "../images/coin.png";
@@ -32,6 +32,14 @@ const StatusBar = ({ money, time, health }) => {
   const [showPopup, setShowPopup] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [storedMoney, setStoredMoney] = useState(0);
+  const [storedTime, setStoredTime] = useState(0);
+  const [storedHealth, setStoredHealth] = useState(0);
+  const [storedHouse, setStoredHouse] = useState(0);
+  const [storedSchool, setStoredSchool] = useState(0);
+  const [storedWork, setStoredWork] = useState(0);
+  const [storedCar, setStoredCar] = useState(0);
+  const [storedBaby, setStoredBaby] = useState(0);
 
   const closePopup = (e) => {
     e.stopPropagation();
@@ -52,23 +60,26 @@ const StatusBar = ({ money, time, health }) => {
   let work = null;
   const selectedCharacter = localStorage.getItem("selectedCharacter");
 
-  const storedMoney = parseInt(localStorage.getItem('money'), 10);
-  const storedTime = parseInt(localStorage.getItem('time'), 10);
-  const storedHealth = parseInt(localStorage.getItem('health'), 10);
-  const storedHouse = parseInt(localStorage.getItem('house'), 10);
-  const storedSchool = parseInt(localStorage.getItem('school'), 10);
-  const storedWork = parseInt(localStorage.getItem('work'), 10);
-  const storedCar = parseInt(localStorage.getItem('car'), 10);
-  const storedBaby = parseInt(localStorage.getItem('baby'), 10);
+  useEffect(() => {
+    const money = parseInt(localStorage.getItem('money'), 10);
+    const time = parseInt(localStorage.getItem('time'), 10);
+    const health = parseInt(localStorage.getItem('health'), 10);
+    const house = parseInt(localStorage.getItem('house'), 10);
+    const school = parseInt(localStorage.getItem('school'), 10);
+    const work = parseInt(localStorage.getItem('work'), 10);
+    const car = parseInt(localStorage.getItem('car'), 10);
+    const baby = parseInt(localStorage.getItem('baby'), 10);
 
-  const initialMoney = storedMoney || characterImages[selectedCharacter]?.money || 0;
-  const initialTime = storedTime || characterImages[selectedCharacter]?.time || 0;
-  const initialHealth = storedHealth || characterImages[selectedCharacter]?.health || 0;
-  const initialHouse = storedHouse || characterImages[selectedCharacter]?.house || 0;
-  const initialSchool = storedSchool || characterImages[selectedCharacter]?.school || 0;
-  const initialWork = storedWork || characterImages[selectedCharacter]?.work || 0;
-  const initialCar = storedCar || characterImages[selectedCharacter]?.car || 0;
-  const initialBaby = storedBaby || characterImages[selectedCharacter]?.baby || 0;
+    setStoredMoney(money || characterImages[selectedCharacter]?.money || 0);
+    setStoredTime(time || characterImages[selectedCharacter]?.time || 0);
+    setStoredHealth(health || characterImages[selectedCharacter]?.health || 0);
+    setStoredHouse(house || characterImages[selectedCharacter]?.house || 0);
+    setStoredSchool(school || characterImages[selectedCharacter]?.school || 0);
+    setStoredWork(work || characterImages[selectedCharacter]?.work || 0);
+    setStoredCar(car || characterImages[selectedCharacter]?.car || 0);
+    setStoredBaby(baby || characterImages[selectedCharacter]?.baby || 0);
+  }, [selectedCharacter]);
+
   const characterImagePath = characterImages[selectedCharacter]?.image;
 
   if (storedHouse === 1) {
@@ -84,8 +95,19 @@ const StatusBar = ({ money, time, health }) => {
     school = storedSchool;
   }
 
+  useEffect(() => {
+    const handleStorageChange = () => {
+      // Handle changes in local storage here
+      // You may want to update the stored values
+      // and trigger a re-render of the component
+    };
 
- 
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, []); // This effect runs only once on component mount
 
   return (
     <div>
@@ -132,7 +154,7 @@ const StatusBar = ({ money, time, health }) => {
             alt="Coin"
             style={{ width: "24px", height: "22px", marginRight: "2px",marginLeft: "-2px"  }}
           />
-          <span>{money || initialMoney}</span>
+          <span>{money || storedMoney}</span>
         </div>
         <div style={{ ...styles.item, display: "flex", alignItems: "center" }}>
           <img
@@ -140,7 +162,7 @@ const StatusBar = ({ money, time, health }) => {
             alt="Heart"
             style={{ width: "20px", height: "20px", marginRight: "5px",marginTop: "1px" }}
           />
-          <span>{health || initialHealth}</span>
+          <span>{health || storedHealth}</span>
         </div>
         <div style={{ ...styles.item, display: "flex", alignItems: "center" }}>
           <img
@@ -148,10 +170,9 @@ const StatusBar = ({ money, time, health }) => {
             alt="Clock"
             style={{ width: "22px", height: "22px", marginRight: "5px" }}
           />
-          <span>{time || initialTime}</span>
+          <span>{time || storedTime}</span>
         </div>
       </div>
-    
 
       {showPopup && (
         <div style={styles.popupBackground} onClick={togglePopup}>

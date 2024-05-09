@@ -9,7 +9,7 @@ const PrivateSchool = () => {
   const initialMoney = parseInt(localStorage.getItem('money'), 10);
   const initialSchool = parseInt(localStorage.getItem('school'), 10);
   const initialHome = parseInt(localStorage.getItem('house'), 10);
-
+  const storedSchool = parseInt(localStorage.getItem('school'), 10);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [money, setMoney] = useState(initialMoney);
   const [school, setSchool] = useState(initialSchool);
@@ -77,7 +77,7 @@ const PrivateSchool = () => {
           <p>Price: 5 / month</p>
         </div>
       </div>
-      <Task />
+      {storedSchool == 0 && <Task />}
       <header></header>
       <main>
         {/* Choose button */}

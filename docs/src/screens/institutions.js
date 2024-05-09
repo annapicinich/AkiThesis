@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StatusBar from './status';
 import Task from './task'; // Import the Task component
-import Store from './store'; // Import the Task component
 import background from '../images/background.png';
 import envImage from '../images/envir.png'; // Import the work image
 import privateImage from '../images/private.png'; 
@@ -15,6 +14,7 @@ import workH from '../images/workH.png';
 import workL from '../images/workL.png'; 
 import hospital from '../images/hospital.png'; 
 import Situation from './situations'
+import Store from './store'
 
 const Institutions = () => {
 
@@ -39,7 +39,7 @@ const Institutions = () => {
 
       {/* Status Bar */}
       <StatusBar />
-
+<Store/>
       {/* Institutions grid */}
       <div style={styles.gridContainer}>
         {/* School */}
@@ -64,7 +64,7 @@ const styles = {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, minmax(100px, 1fr))',
     gridTemplateRows: 'repeat(3, minmax(200px, 1fr))',
-    gap: '10px',
+    gap: '5px',
     marginTop: '180px',
     width: '95%',
     justifyContent: 'center',
@@ -83,8 +83,9 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${envImage})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '180px',
+    width: '320px',
+    height: '220px',
+    marginTop: '-70px',
   },
   hospitalStyle: {
     textDecoration: 'none',
@@ -99,8 +100,9 @@ const styles = {
     backgroundImage: `url(${hospital})`,
     backgroundSize: 'contain',
     width: '300px',
-    height: '180px',
-    
+    height: '170px',
+    marginTop: '10px',
+    marginLeft: '40px',
   },
   charterSchoolStyle: {
     textDecoration: 'none',
@@ -114,8 +116,9 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${charter})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '320px',
+    height: '160px',
+    marginTop: '30px',
   },
   homeHStyle: {
     textDecoration: 'none',
@@ -129,8 +132,10 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${homeH})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '340px',
+    height: '140px',
+    marginTop: '60px',
+    marginLeft: '-20px',
   },
   homeLStyle: {
     textDecoration: 'none',
@@ -144,8 +149,8 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${homeL})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '350px',
+    height: '190px',
   },
   publicSchoolStyle: {
     textDecoration: 'none',
@@ -159,8 +164,10 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${publicImage})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '340px',
+    height: '200px',
+    marginLeft: '-40px',
+   
   },
   homeMStyle: {
     textDecoration: 'none',
@@ -174,8 +181,8 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${homeM})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '360px',
+    height: '200px',
   },
   workHStyle: {
     textDecoration: 'none',
@@ -189,8 +196,10 @@ const styles = {
     backgroundPosition: 'center',
     backgroundImage: `url(${workH})`,
     backgroundSize: 'contain',
-    width: '300px',
-    height: '150px',
+    width: '380px',
+    height: '180px',
+    marginTop: '20px',
+    marginLeft: '-20px',
   },
   workLStyle: {
     textDecoration: 'none',
@@ -206,6 +215,7 @@ const styles = {
     backgroundSize: 'contain',
     width: '300px',
     height: '150px',
+    marginLeft: '160px',
   },
   privateSchoolStyle: {
     textDecoration: 'none',
@@ -220,7 +230,8 @@ const styles = {
     backgroundImage: `url(${privateImage})`,
     backgroundSize: 'contain',
     width: '300px',
-    height: '150px',
+    height: '160px',
+    marginLeft: '120px',
   },
   emptySpace: {
     width: '300px',

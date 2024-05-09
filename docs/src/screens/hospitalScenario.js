@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import StatusBar from './status'; // Import the StatusBar component
 import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
+import HospitalB from '../images/hospitalB.png'; // Import the HospitalB image
 
 const HospitalScenario = () => {
-    const storedMoney = parseInt(localStorage.getItem('money'), 10);
     const [selectedOption, setSelectedOption] = useState(null); // State to store the selected option
     const [showPopup, setShowPopup] = useState(false); // State to control the visibility of the PCI popup
     const [showSecondPopup, setShowSecondPopup] = useState(false); // State to control the visibility of the second popup
     const navigate = useNavigate(); // Initialize useNavigate
+
+    const storedMoney = parseInt(localStorage.getItem('money'), 10);
+    const storedHeart = parseInt(localStorage.getItem('health'), 10);
 
     // Function to handle the selection of options
     const handleOption = (option) => {
@@ -17,14 +20,19 @@ const HospitalScenario = () => {
             setShowPopup(true); // Show the PCI popup if the user doesn't have enough money
         } else if (option === 'PCI') {
             // Redirect to the PCI page
-            navigate('/PCIPage');
+            localStorage.setItem('money', storedMoney - 10); // Deduct 10 coins
+            navigate('/institutions');
         } else if (option === 'BloodThinners') {
+            // Deduct 0.5 coin monthly
+            localStorage.setItem('money', storedMoney - 0.5);
+            // Deduct 1 heart monthly
+            localStorage.setItem('health', storedHeart - 1);
             setShowSecondPopup(true); // Show the second popup for the "Blood Thinners" option
         }
     };
 
     return (
-        <div style={styles.container}>
+        <div style={{ ...styles.container, backgroundImage: `url(${HospitalB})` }}> {/* Set HospitalB as background */}
             <StatusBar />
             <div style={styles.centeredContent}>
                 {/* Hospital Scenario Component */}
@@ -69,7 +77,7 @@ const styles = {
         alignItems: 'center',
         justifyContent: 'center',
         minHeight: '100vh', // Set minimum height to fill the entire viewport
-        backgroundColor: 'lightblue',
+        backgroundSize: 'cover', // Cover the entire div with the background image
         backgroundPosition: 'center', // Center the background image
     },
     centeredContent: {
@@ -92,7 +100,6 @@ const styles = {
     optionButton: {
         margin: '0 10px',
         padding: '10px 20px',
-       
     },
     popup: {
         position: 'fixed',
@@ -107,11 +114,12 @@ const styles = {
 
     },
     popupContent: {
-        position: 'relative', // Set position to relative
+        position: 'relative',
         backgroundColor: 'white',
         padding: '20px',
         borderRadius: '5px',
         boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+        textAlign: 'center', // Center text
     },
     closeButton: {
         position: 'absolute',
@@ -126,7 +134,6 @@ const styles = {
     returnButton: {
         marginTop: '20px',
         padding: '10px 20px',
-       
     },
 };
 
